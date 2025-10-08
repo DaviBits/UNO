@@ -7,13 +7,13 @@ public class Carta {
     private boolean esEspecial;
 
     //tabla de funciones de las cartas
-    // funcion de la carta -> valor del string
+    // funcion de la carta -> valor del string  String [] especiales={" 🚫", " 🔄", " 2️⃣"};
     //      normal -> " "
-    //      +2 -> "+2"
-    //      +4 -> "+4"          TAMBIEN ES UN CAMBIO DE COLOR
-    //cambioDeColor -> "cc"
-    //      Giro -> "->"
-    //      Salto -> "x"
+    //      +2 -> "2️⃣"
+    //      +4 -> "🌈4️"          TAMBIEN ES UN CAMBIO DE COLOR
+    //      cc -> "🌈"
+    //      Giro -> "🔄"
+    //      Salto -> "🚫"
 
 
     public Carta (int numero, String color, String funcion, boolean esEspecial){
@@ -34,5 +34,11 @@ public class Carta {
     public int getNumero() {return numero;}
     public boolean esEspecial() {return esEspecial;}
 
-    public String toString(){return "["+color+"|"+ numero +"|"+ funcion+"]";}
+   // public String toString(){return "["+color+"|"+ numero +"|"+ funcion+"]";}
+   public String toString(){
+       if(!esEspecial){
+           return "["+ color+ numero+ funcion+ "]";
+       }
+       return "["+ color+ funcion+ "]";
+   }
 }
