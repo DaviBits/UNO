@@ -92,6 +92,7 @@ public class JuegoUNO {
         System.out.println();
         System.out.println("Que carta quiere poner? (1-"+ jugadorEnTurno.getNumeroCartas()+ ")");
         System.out.println("si quieres tomar una carta teclea 100");
+
         System.out.println("si quieres pasar escribe 99");
         int indiceCarta=scan.nextInt()-1;
         if(indiceCarta+1==100){
@@ -101,11 +102,12 @@ public class JuegoUNO {
         }else if(indiceCarta+1==99){
             return;
         }
+
         if(indiceCarta>jugadorEnTurno.getNumeroCartas()){
             System.out.println("No tienes tantas cartas ");
             hacerJugada(turno);
         }else{
-            if(verificarSiSePuedePoner(jugadorEnTurno.getCartaEn(indiceCarta))){
+            if(verificarSiSePuedePoner(jugadorEnTurno.getCartaEn(indiceCarta))||jugadorEnTurno.getCartaEn(indiceCarta).getColor().equals("⚫")){
                 cartaTablero=jugadorEnTurno.getCartaEn(indiceCarta);
                 jugadorEnTurno.eliminarCartasEn(indiceCarta);
             }else{
@@ -118,8 +120,9 @@ public class JuegoUNO {
 
     public void jugar(){
         while(!verificarGanador()){
-            hacerJugada(turno);
             verificarSentido();
+            hacerJugada(turno);
+
         }
     }
 
@@ -127,22 +130,25 @@ public class JuegoUNO {
 
         if(cartaTablero.getFuncion().equals(" 🔄")){
             if(sentidoTurnos.equals("derecho")){
-                sentidoTurnos="reves";
+                this.sentidoTurnos="reves";
             }
         }
 
+
         if(sentidoTurnos.equals("derecho")){
-            turno++;
+            this.turno++;
         }else{
-            turno--;
+            System.out.println("turnos invertidos");
+            this.turno--;
         }
 
         if(turno==numJugadores){
             this.turno=0;
         }
         if(turno<0){
-            turno=numJugadores;
+            this.turno=numJugadores-1;
         }
+
     }
 
     public static void main(String [] args){
