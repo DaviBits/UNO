@@ -1,12 +1,14 @@
 package com.example.uno.logic;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Mazo {
     ArrayList<Carta> mazo;
 
     public Mazo (){
         mazo = new ArrayList<>();
+        llenar();
     }
 
     public void llenar(){
@@ -25,18 +27,31 @@ public class Mazo {
 
             //cartas de cambio de color
             for(int d=0; d<4; d++){
-                mazo.add(new Carta(10,"⚫",  "🌈", true));
+             //   mazo.add(new Carta(10,"⚫",  "🌈", true));
             }
 
-            mazo.add(new Carta(10, "⚫", "🌈4️", true));
+           // mazo.add(new Carta(10, "⚫", "🌈4️", true));
 
         }
+
+    }
+
+    public void mezclar(){Collections.shuffle(mazo);}
+
+    public Carta getUltimaCarta(){return mazo.getLast();}
+
+    public ArrayList<Carta> getMazo(){return mazo;}
+
+    public void mostrarMazo(){
         mazo.forEach(System.out::println);
     }
+
+    public void eliminarUltimaCarta(){mazo.removeLast();}
 
 
     public static void main(String [] args){
         Mazo tester = new Mazo();
         tester.llenar();
+        tester.mezclar();
     }
 }
