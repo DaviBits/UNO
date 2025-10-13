@@ -2,6 +2,7 @@ module com.example.uno {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
+    exports com.example.uno.GUI;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;

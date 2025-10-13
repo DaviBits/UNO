@@ -24,7 +24,13 @@ public class Carta {
 
     }
 
-    public void setColor(String color){this.color=color;}
+    public void setColor(String color){
+        color.toLowerCase();
+        switch (color){
+            case "rojo":
+                break;
+        }
+    }
     public void setNumero(int numero){this.numero=numero;}
     public void setFuncion(String funcion){this.funcion=funcion;}
     public void setEsEspecial(boolean esEspecial){this.esEspecial=esEspecial;}
@@ -41,4 +47,40 @@ public class Carta {
        }
        return "["+ color+ funcion+ "]";
    }
+
+    public String getNombreImagen() {
+        String nombreColor = "";
+        String nombreValor = "";
+
+        // Quitar el emoji del color para tener solo el texto (opcionalmente puedes tener otro atributo sin emoji)
+        switch (color.trim()) {
+            case "🔴": nombreColor = "rojo"; break;
+            case "🟠": nombreColor = "amarilla"; break;
+            case "🟢": nombreColor = "verde"; break;
+            case "🔵": nombreColor = "azul"; break;
+            case "⚫": nombreColor = "negra"; break;
+            default: nombreColor = "desconocido";
+        }
+
+
+        if (!esEspecial) {
+            nombreValor = String.valueOf(numero);
+        } else {
+            switch (funcion.trim()) {
+                case "🚫": nombreValor = "skip"; break;
+                case "🔄": nombreValor = "reverse"; break;
+                case "2️⃣": nombreValor = "+2"; break;
+                case "🌈": nombreValor = "cambioDeColor";
+                    nombreColor= "negra";break;
+                case "🌈4️⃣": nombreValor = "+4";
+                    nombreColor= "negra";break;
+                default: nombreValor = "especial";
+            }
+        }
+        //System.out.println(nombreValor);
+        //System.out.println(nombreColor);
+
+        return "carta_"+nombreColor+"_"+nombreValor+".PNG";
+    }
+
 }

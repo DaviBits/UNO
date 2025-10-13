@@ -54,6 +54,8 @@ public class JuegoUNO {
                 jugadores.add(new Jugador(nombre, 0));
             }
         }
+
+
     }
 
     public boolean verificarGanador(){
@@ -120,19 +122,15 @@ public class JuegoUNO {
 
     public void jugar(){
         while(!verificarGanador()){
-            verificarSentido();
             hacerJugada(turno);
+            verificarSentido();
 
         }
     }
 
     public void verificarSentido(){
 
-        if(cartaTablero.getFuncion().equals(" 🔄")){
-            if(sentidoTurnos.equals("derecho")){
-                this.sentidoTurnos="reves";
-            }
-        }
+
 
 
         if(sentidoTurnos.equals("derecho")){
@@ -151,7 +149,49 @@ public class JuegoUNO {
 
     }
 
+    public void aplicarEfectos(Carta cartaPuesta){
+        String efecto= cartaPuesta.getFuncion();
+        switch (efecto){
+            case " 🚫":
+                System.out.println("se salta un turno");
+                if(sentidoTurnos.equals("derecho")){
+                    this.turno++;
+                }else{
+                    System.out.println("turnos invertidos");
+                    this.turno--;
+                }
+                break;
+            case " 🔄":
+                System.out.println("se invierte el sentido de turnos");
+                if(sentidoTurnos.equals("derecho")){
+                    this.sentidoTurnos="reves";
+                }else if(sentidoTurnos.equals("reves")){
+                    this.sentidoTurnos="derecho";
+                }
+                break;
+            case " 2️⃣":
+                System.out.println("se suman cartas al siguiente jugador");
+                for(int i=0; i<2; i++){
+                    jugadores.get(turno+1).agregarCarta(mazo.getUltimaCarta());
+                    mazo.eliminarUltimaCarta();
+                }
+                break;
+            case "🌈4️":
+                Scanner scan = new Scanner(System.in);
+                System.out.println("QUE COLOR SERA LA SIGUIENTE CARTA?");
+                String color=scan.nextLine();
+                cartaTablero.setColor(color);
+
+                break;
+            case "🌈":
+                System.out.println("QUE COLOR SERA LA SIGUIENTE CARTA?");
+                break;
+        }
+    }
+
+
+
     public static void main(String [] args){
-        JuegoUNO tester = new JuegoUNO(2);
+        JuegoUNO tester = new JuegoUNO(4);
     }
 }

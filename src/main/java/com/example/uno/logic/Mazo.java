@@ -13,6 +13,7 @@ public class Mazo {
 
     public void llenar(){
         String [] colores= {" 🔴", " 🟠", " 🟢", " 🔵"};
+
         String [] especiales={" 🚫", " 🔄", " 2️⃣"};
             //cartas del 0 al 9 de todos los colores
         for(int i=0; i<4; i++){
@@ -27,10 +28,10 @@ public class Mazo {
 
             //cartas de cambio de color
             for(int d=0; d<4; d++){
-             //   mazo.add(new Carta(10,"⚫",  "🌈", true));
+                mazo.add(new Carta(10,"⚫",  "🌈", true));
             }
 
-           // mazo.add(new Carta(10, "⚫", "🌈4️", true));
+           mazo.add(new Carta(10, "⚫", "🌈4️", true));
 
         }
 
