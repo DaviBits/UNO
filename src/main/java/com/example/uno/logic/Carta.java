@@ -28,6 +28,16 @@ public class Carta {
         color.toLowerCase();
         switch (color){
             case "rojo":
+                this.color=" 🔴";
+                break;
+            case "azul":
+                this.color=" 🔵";
+                break;
+            case "amarillo":
+                this.color=" 🟠";
+                break;
+            case "verde":
+                this.color=" 🟢";
                 break;
         }
     }

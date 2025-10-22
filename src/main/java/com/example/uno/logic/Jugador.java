@@ -18,10 +18,15 @@ public class Jugador {
         contadorDeCartas++;
     }
 
+    public void eliminarCarta(Carta carta){
+        mano.remove(carta);
+    }
+
     public void mostrarCartas(){
         for(Carta cartas: mano){
             System.out.print(cartas);
         }
+        System.out.println();
     }
 
     public void sumarCartas(int numero){
@@ -45,5 +50,11 @@ public class Jugador {
 
     public String getNombre(){
         return nombre;
+    }
+
+    public ArrayList<Carta> getCartas(){return mano;}
+
+    public void tomarCartas(ArrayList<Carta> cartas){
+        this.mano=cartas;
     }
 }

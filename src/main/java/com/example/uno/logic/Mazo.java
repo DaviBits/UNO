@@ -26,13 +26,15 @@ public class Mazo {
                 mazo.add(new Carta(10,colores[i], especiales[k], true ));
             }
 
-            //cartas de cambio de color
-            for(int d=0; d<4; d++){
-                mazo.add(new Carta(10,"⚫",  "🌈", true));
-            }
 
-           mazo.add(new Carta(10, "⚫", "🌈4️", true));
 
+            mazo.add(new Carta(10, "⚫", "🌈4️⃣", true));
+
+
+        }
+        //cartas de cambio de color
+        for(int d=0; d<4; d++){
+            mazo.add(new Carta(10,"⚫",  "🌈", true));
         }
 
     }
@@ -53,6 +55,7 @@ public class Mazo {
     public static void main(String [] args){
         Mazo tester = new Mazo();
         tester.llenar();
-        tester.mezclar();
+        tester.mostrarMazo();
+        //tester.mezclar();
     }
 }
